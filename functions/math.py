@@ -29,6 +29,13 @@ def inverse(array):
     number_of_rows = len(array)
     extended_array = create_extended_array(array)
     for row in range(number_of_rows):
+        if extended_array[row][row] == 0:
+            i = row
+            temp = extended_array[i]
+            while i < number_of_rows - 1:
+                extended_array[i] = extended_array[i + 1]
+                i = i + 1
+            extended_array[i] = temp
         pivot = extended_array[row][row]
         number_of_columns = len(extended_array[row])
         for column in range(number_of_columns):
