@@ -1,3 +1,10 @@
+class MatrixError(Exception):
+    def __init__(self, mensaje):
+        self.mensaje = mensaje
+
+    def __str__(self):
+        return self.mensaje
+
 def create_matrix(number_of_rows, number_of_columns):
     return [[None] * number_of_columns for i in range(number_of_rows)]
 
@@ -10,7 +17,7 @@ def determinant(array):
     for row in range(number_of_rows):
         number_of_columns = len(array[row])
         if number_of_rows != number_of_columns:
-            raise Exception
+            raise MatrixError("La matriz no tiene determinante")
         sum += (-1) ** (row + column) * array[row][column] * determinant([[array[i][j] for j in range(number_of_columns) if j != column] for i in range(number_of_rows) if i != row])
     return sum
 
@@ -26,6 +33,8 @@ def create_extended_array(array):
     return [array[i] + identity_array[i] for i in range(size)]
 
 def inverse(array):
+    if determinant(array) == 0:
+        raise MatrixError("La matriz no es invertible")
     number_of_rows = len(array)
     extended_array = create_extended_array(array)
     for row in range(number_of_rows):
