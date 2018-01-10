@@ -39,4 +39,14 @@ def inverse(array):
                 pivot = extended_array[i][row]
                 for j in range(number_of_columns):
                     extended_array[i][j] = extended_array[i][j] - pivot * extended_array[row][j]
-    return extended_array
+    return [x[number_of_rows:] for x in extended_array]
+
+def product(a, b):
+    size_a = len(a)
+    size_b = len(b)
+    c = [[0.0] * size_b for i in range(size_a)]
+    for row in range(size_a):
+        for column in range(size_b):
+            for j in range(size_b):
+                 c[row][column] = c[row][column] + a[row][j] * b[j][column]
+    return c
