@@ -1,0 +1,10 @@
+version: '2'
+services:
+  postgresql:
+      image: postgres:9.6.3
+      ports:
+        - "5433:5432"
+      environment:
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: 123456
+        POSTGRES_DB: test
