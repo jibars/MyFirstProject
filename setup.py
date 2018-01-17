@@ -7,6 +7,5 @@ setup(
     author='Juan Antonio Ibars',
     author_email='ja_ibars@yahoo.es',
     license='GNU GPLv3',
-    packages=['pysaurio'],
-    package_dir = {'pysaurio':'pysaurio'},
+    packages=['functions'],
 )
