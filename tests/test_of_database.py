@@ -1,4 +1,5 @@
 import unittest
+import time
 from mock import patch, Mock, MagicMock
 import functions.repository as repository
 
@@ -6,6 +7,7 @@ import functions.repository as repository
 class BasicDatabaseTests(unittest.TestCase):
 
     def setUp(self):
+        time.sleep(3)
         self.repository = repository.postgres_repository(user = 'root', host = 'localhost', port = '5433', database = 'test', password = '123456').connect()
 
     def tearDown(self):
