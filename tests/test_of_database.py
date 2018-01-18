@@ -12,12 +12,13 @@ class BasicDatabaseTests(unittest.TestCase):
     def tearDown(self):
         self.repository.close()
 
-    def test_get(self):
-        self.repository.delete("DROP TABLE IF EXISTS stores")
-        self.repository.create("CREATE TABLE stores (store_id serial, name varchar(100), email varchar(100), phone varchar(100))")
-        self.repository.post("INSERT INTO stores VALUES(62126, 'Moviles Android Baratos', 'ventas@movilesandroidbaratos.com', '672616995')")
+    def test_postgres_repository(self):
+        postgres = self.repository
+        postgres.delete("DROP TABLE IF EXISTS stores")
+        postgres.create("CREATE TABLE stores (store_id serial, name varchar(100), email varchar(100), phone varchar(100))")
+        postgres.post("INSERT INTO stores VALUES(62126, 'Moviles Android Baratos', 'ventas@movilesandroidbaratos.com', '672616995')")
         expected = [(62126, 'Moviles Android Baratos', 'ventas@movilesandroidbaratos.com', '672616995')]
-        result = self.repository.get("SELECT store_id, name, email, phone FROM stores WHERE store_id=62126")
+        result = postgres.get("SELECT store_id, name, email, phone FROM stores WHERE store_id=62126")
 
         self.assertEqual(expected, result)
 
