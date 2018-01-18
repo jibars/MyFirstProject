@@ -4,6 +4,7 @@ python: "2.7"
 
 before_install:
   - docker-compose up -d
+  - sleep 5s
 
 install:
   - pip install -r requirements.txt
